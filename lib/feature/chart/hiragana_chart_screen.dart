@@ -1,9 +1,8 @@
 import "package:flutter/material.dart";
 
 import "../../core/hiragana.dart";
-import "kana_box.dart";
+import "kana_chart.dart";
 
-// TODO: Break row to make the grid nicer, for example after "よ"
 class HiraganaChartScreen extends StatelessWidget {
   const HiraganaChartScreen({super.key});
 
@@ -21,38 +20,51 @@ class HiraganaChartScreen extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final size = constraints.maxWidth / 5;
-          return ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 4.0),
-            itemBuilder: (context, index) {
-              final kanas = hiraganas[index].entries.toList();
-              return SizedBox(
-                height: size,
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return SizedBox.square(
-                      dimension: size,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: KanaBox(
-                              kana: kanas[index].key,
-                              romaji: kanas[index].value,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: kanas.length,
+          if (constraints.maxWidth > 1500) {
+            return Row(
+              children: [
+                Expanded(
+                  child: KanaChart(
+                    kanaMaps: Hiragana.bases,
+                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  ),
                 ),
-              );
-            },
-            itemCount: hiraganas.length,
+                Expanded(
+                  child: KanaChart(
+                    kanaMaps: Hiragana.dakutens,
+                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  ),
+                ),
+                Expanded(
+                  child: KanaChart(
+                    kanaMaps: Hiragana.handakutens,
+                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  ),
+                ),
+              ],
+            );
+          }
+          if (constraints.maxWidth > 1000) {
+            return Row(
+              children: [
+                Expanded(
+                  child: KanaChart(
+                    kanaMaps: Hiragana.bases,
+                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  ),
+                ),
+                Expanded(
+                  child: KanaChart(
+                    kanaMaps: Hiragana.dakutens + Hiragana.handakutens,
+                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  ),
+                ),
+              ],
+            );
+          }
+          return KanaChart(
+            kanaMaps: Hiragana.all,
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
           );
         },
       ),
