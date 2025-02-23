@@ -15,7 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Kana",
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        scaffoldBackgroundColor: Colors.grey[200],
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[200],
+        ),
       ),
       debugShowCheckedModeBanner: false,
       routes: {

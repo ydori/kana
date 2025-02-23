@@ -10,12 +10,14 @@ class KanaBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(width: 0.5, color: Colors.grey),
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(16.0),
       ),
       padding: EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             kana,

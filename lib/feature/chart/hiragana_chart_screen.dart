@@ -19,21 +19,37 @@ class HiraganaChartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: OrientationBuilder(
-        builder: (context, orientation) {
-          return GridView.builder(
-            gridDelegate: (orientation == Orientation.landscape)
-                ? SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 120.0,
-                  )
-                : SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                  ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final size = constraints.maxWidth / 5;
+          return ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
             itemBuilder: (context, index) {
-              final kana = hiraganas.keys.elementAt(index);
-              return KanaBox(
-                kana: kana,
-                romaji: hiraganas[kana]!,
+              final kanas = hiraganas[index].entries.toList();
+              return SizedBox(
+                height: size,
+                child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return SizedBox.square(
+                      dimension: size,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
+                            child: KanaBox(
+                              kana: kanas[index].key,
+                              romaji: kanas[index].value,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount: kanas.length,
+                ),
               );
             },
             itemCount: hiraganas.length,
