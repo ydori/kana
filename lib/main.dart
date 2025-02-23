@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "feature/chart/hiragana_chart_screen.dart";
 import "feature/home/home_screen.dart";
 
 void main() {
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (context) => HomeScreen(), //
+        "/": (context) => HomeScreen(
+              onHiraganaTap: () {
+                Navigator.of(context).pushNamed("/chart/hiragana");
+              },
+            ),
+        "/chart/hiragana": (context) => HiraganaChartScreen(),
       },
     );
   }
