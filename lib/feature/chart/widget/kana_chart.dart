@@ -4,10 +4,20 @@ import "../../../core/model/hiragana.dart";
 import "kana_box.dart";
 
 class KanaChart extends StatelessWidget {
-  const KanaChart({super.key, required this.kanaMaps, required this.padding});
+  const KanaChart({
+    super.key,
+    required this.title,
+    required this.kanaMaps,
+    required this.padding,
+    this.scrollPhysics,
+    this.shrinkWrap = false,
+  });
 
+  final String title;
   final List<KanaMap> kanaMaps;
   final EdgeInsets padding;
+  final ScrollPhysics? scrollPhysics;
+  final bool shrinkWrap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +26,19 @@ class KanaChart extends StatelessWidget {
         final size = (constraints.maxWidth - padding.horizontal) / 5;
         return ListView.builder(
           padding: padding,
+          physics: scrollPhysics,
+          shrinkWrap: shrinkWrap,
           itemBuilder: (context, index) {
-            final rowEntries = kanaMaps[index].entries.toList();
+            if (index == 0) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              );
+            }
+            final rowEntries = kanaMaps[index - 1].entries.toList();
             return SizedBox(
               height: size,
               child: ListView.builder(
@@ -44,7 +65,7 @@ class KanaChart extends StatelessWidget {
               ),
             );
           },
-          itemCount: kanaMaps.length,
+          itemCount: kanaMaps.length + 1,
         );
       },
     );

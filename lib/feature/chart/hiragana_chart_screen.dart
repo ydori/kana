@@ -25,18 +25,21 @@ class HiraganaChartScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: KanaChart(
+                    title: "Basic",
                     kanaMaps: Hiragana.bases,
                     padding: EdgeInsets.symmetric(horizontal: 4.0),
                   ),
                 ),
                 Expanded(
                   child: KanaChart(
+                    title: "Dakuten",
                     kanaMaps: Hiragana.dakutens,
                     padding: EdgeInsets.symmetric(horizontal: 4.0),
                   ),
                 ),
                 Expanded(
                   child: KanaChart(
+                    title: "Handakuten",
                     kanaMaps: Hiragana.handakutens,
                     padding: EdgeInsets.symmetric(horizontal: 4.0),
                   ),
@@ -46,25 +49,69 @@ class HiraganaChartScreen extends StatelessWidget {
           }
           if (constraints.maxWidth > 1000) {
             return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: KanaChart(
+                    title: "Basic",
                     kanaMaps: Hiragana.bases,
                     padding: EdgeInsets.symmetric(horizontal: 4.0),
                   ),
                 ),
                 Expanded(
-                  child: KanaChart(
-                    kanaMaps: Hiragana.dakutens + Hiragana.handakutens,
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        KanaChart(
+                          title: "Dakuten",
+                          kanaMaps: Hiragana.dakutens,
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          scrollPhysics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                        ),
+                        SizedBox(height: 16.0),
+                        KanaChart(
+                          title: "Handakuten",
+                          kanaMaps: Hiragana.handakutens,
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          scrollPhysics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             );
           }
-          return KanaChart(
-            kanaMaps: Hiragana.all,
-            padding: EdgeInsets.symmetric(horizontal: 4.0),
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                KanaChart(
+                  title: "Basic",
+                  kanaMaps: Hiragana.bases,
+                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  scrollPhysics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                ),
+                SizedBox(height: 16.0),
+                KanaChart(
+                  title: "Dakuten",
+                  kanaMaps: Hiragana.dakutens,
+                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  scrollPhysics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                ),
+                SizedBox(height: 16.0),
+                KanaChart(
+                  title: "Handakuten",
+                  kanaMaps: Hiragana.handakutens,
+                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  scrollPhysics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                ),
+              ],
+            ),
           );
         },
       ),
