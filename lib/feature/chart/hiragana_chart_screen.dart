@@ -20,6 +20,7 @@ class HiraganaChartScreen extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
+          final padding = EdgeInsets.all(4.0);
           if (constraints.maxWidth > 1500) {
             return Row(
               children: [
@@ -27,21 +28,21 @@ class HiraganaChartScreen extends StatelessWidget {
                   child: KanaChart(
                     title: "Basic",
                     kanaMaps: Hiragana.bases,
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: padding,
                   ),
                 ),
                 Expanded(
                   child: KanaChart(
                     title: "Dakuten",
                     kanaMaps: Hiragana.dakutens,
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: padding,
                   ),
                 ),
                 Expanded(
                   child: KanaChart(
                     title: "Handakuten",
                     kanaMaps: Hiragana.handakutens,
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: padding,
                   ),
                 ),
               ],
@@ -55,7 +56,7 @@ class HiraganaChartScreen extends StatelessWidget {
                   child: KanaChart(
                     title: "Basic",
                     kanaMaps: Hiragana.bases,
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                    padding: padding,
                   ),
                 ),
                 Expanded(
@@ -65,7 +66,7 @@ class HiraganaChartScreen extends StatelessWidget {
                         KanaChart(
                           title: "Dakuten",
                           kanaMaps: Hiragana.dakutens,
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: padding,
                           scrollPhysics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                         ),
@@ -73,7 +74,7 @@ class HiraganaChartScreen extends StatelessWidget {
                         KanaChart(
                           title: "Handakuten",
                           kanaMaps: Hiragana.handakutens,
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: padding,
                           scrollPhysics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                         ),
@@ -90,7 +91,7 @@ class HiraganaChartScreen extends StatelessWidget {
                 KanaChart(
                   title: "Basic",
                   kanaMaps: Hiragana.bases,
-                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  padding: padding,
                   scrollPhysics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                 ),
@@ -98,7 +99,7 @@ class HiraganaChartScreen extends StatelessWidget {
                 KanaChart(
                   title: "Dakuten",
                   kanaMaps: Hiragana.dakutens,
-                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  padding: padding,
                   scrollPhysics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                 ),
@@ -106,7 +107,7 @@ class HiraganaChartScreen extends StatelessWidget {
                 KanaChart(
                   title: "Handakuten",
                   kanaMaps: Hiragana.handakutens,
-                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  padding: padding,
                   scrollPhysics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                 ),
