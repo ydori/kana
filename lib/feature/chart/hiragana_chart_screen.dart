@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../core/hiragana.dart";
-import "kana_chart.dart";
+import "../../core/model/hiragana.dart";
+import "widget/kana_chart.dart";
 
 class HiraganaChartScreen extends StatelessWidget {
   const HiraganaChartScreen({super.key});

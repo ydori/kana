@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../core/hiragana.dart";
+import "../../../core/model/hiragana.dart";
 import "kana_box.dart";
 
 class KanaChart extends StatelessWidget {
