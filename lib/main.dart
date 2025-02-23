@@ -24,8 +24,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => HomeScreen(
-              onHiraganaTap: () {
+              onHiraganaChartOpen: () {
                 Navigator.of(context).pushNamed("/chart/hiragana");
+              },
+              onKatakanaChartOpen: () {
+                // TODO: Navigate to Katakana Chart
               },
             ),
         "/chart/hiragana": (context) => HiraganaChartScreen(),

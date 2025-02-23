@@ -1,9 +1,16 @@
 import "package:flutter/material.dart";
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.onHiraganaTap});
+import "widget/chart_card.dart";
 
-  final VoidCallback onHiraganaTap;
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
+    super.key,
+    required this.onHiraganaChartOpen,
+    required this.onKatakanaChartOpen,
+  });
+
+  final VoidCallback onHiraganaChartOpen;
+  final VoidCallback onKatakanaChartOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -11,24 +18,26 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Kana"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
+      body: Container(
+        constraints: BoxConstraints(maxWidth: 300.0),
+        padding: EdgeInsets.all(8.0),
+        child: Row(
           children: [
-            Card(
-              clipBehavior: Clip.antiAlias,
-              child: InkWell(
-                onTap: onHiraganaTap,
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    "ひらがな",
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontFamily: "Noto Sans JP",
-                      fontVariations: [FontVariation.weight(500)],
-                    ),
-                  ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ChartCard(
+                  label: "あ ",
+                  onTap: onHiraganaChartOpen,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ChartCard(
+                  label: "ア ",
+                  onTap: onKatakanaChartOpen,
                 ),
               ),
             ),
