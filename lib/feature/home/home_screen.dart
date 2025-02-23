@@ -7,10 +7,12 @@ class HomeScreen extends StatelessWidget {
     super.key,
     required this.onHiraganaChartOpen,
     required this.onKatakanaChartOpen,
+    required this.onPracticeOpen,
   });
 
   final VoidCallback onHiraganaChartOpen;
   final VoidCallback onKatakanaChartOpen;
+  final VoidCallback onPracticeOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +20,36 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Kana"),
       ),
-      body: Container(
-        constraints: BoxConstraints(maxWidth: 300.0),
-        padding: EdgeInsets.all(8.0),
-        child: Row(
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ChartCard(
-                  label: "あ ",
-                  onTap: onHiraganaChartOpen,
+            Row(
+              children: [
+                Expanded(
+                  child: ChartCard(
+                    title: "あ ",
+                    subtitle: "Hiragana",
+                    onTap: onHiraganaChartOpen,
+                  ),
                 ),
-              ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: ChartCard(
+                    title: "ア ",
+                    subtitle: "Katakana",
+                    onTap: onKatakanaChartOpen,
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ChartCard(
-                  label: "ア ",
-                  onTap: onKatakanaChartOpen,
-                ),
-              ),
+            SizedBox(height: 48.0),
+            Text("Let's review our study!"),
+            SizedBox(height: 20.0),
+            FilledButton(
+              onPressed: onPracticeOpen,
+              child: Text("Practice"),
             ),
           ],
         ),

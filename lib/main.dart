@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "feature/chart/hiragana_chart_screen.dart";
 import "feature/home/home_screen.dart";
+import "feature/practice/practice_screen.dart";
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +31,12 @@ class MyApp extends StatelessWidget {
               onKatakanaChartOpen: () {
                 // TODO: Navigate to Katakana Chart
               },
+              onPracticeOpen: () {
+                Navigator.of(context).pushNamed("/practice");
+              },
             ),
         "/chart/hiragana": (context) => HiraganaChartScreen(),
+        "/practice": (context) => PracticeScreen(),
       },
     );
   }
