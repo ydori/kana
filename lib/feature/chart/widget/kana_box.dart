@@ -13,7 +13,6 @@ class KanaBox extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16.0),
       ),
-      padding: EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +25,7 @@ class KanaBox extends StatelessWidget {
               fontVariations: [FontVariation.weight(500)],
             ),
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 4.0),
           Text(
             romaji,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(

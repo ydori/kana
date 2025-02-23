@@ -31,7 +31,7 @@ class KanaChart extends StatelessWidget {
           itemBuilder: (context, index) {
             if (index == 0) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: padding.horizontal),
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.titleMedium,
@@ -48,7 +48,7 @@ class KanaChart extends StatelessWidget {
                   return SizedBox.square(
                     dimension: size,
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(4.0),
                       child: Center(
                         child: AspectRatio(
                           aspectRatio: 1.0,
