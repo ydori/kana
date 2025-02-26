@@ -18,10 +18,12 @@ class QuizModel extends ChangeNotifier {
   int _totalKana = 0;
   bool _isFinished = false;
 
+  UnmodifiableMapView<String, String> get allKanas =>
+      UnmodifiableMapView(_kanas);
   UnmodifiableSetView<KanaMap> get kanaMaps => UnmodifiableSetView(_kanaMaps);
   UnmodifiableListView<String> get correctKanas =>
       UnmodifiableListView(_correctKanas);
-  UnmodifiableListView<String> get incorrecKanas =>
+  UnmodifiableListView<String> get incorrectKanas =>
       UnmodifiableListView(_incorrectKanas);
 
   int get totalKana => _totalKana;

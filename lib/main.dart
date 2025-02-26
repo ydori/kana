@@ -100,7 +100,11 @@ class MyApp extends StatelessWidget {
               ),
           "/chart/hiragana": (context) => HiraganaChartScreen(),
           "/deck": (context) => DeckScreen(),
-          "/quiz": (context) => QuizScreen(),
+          "/quiz": (context) => QuizScreen(
+                onDeckOpen: () {
+                  Navigator.of(context).pushNamed("/deck");
+                },
+              ),
         },
       ),
     );

@@ -2,10 +2,13 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:provider/provider.dart";
 
+import "../../core/widget/kana_box.dart";
 import "model/quiz_model.dart";
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, required this.onDeckOpen});
+
+  final VoidCallback onDeckOpen;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -67,44 +70,82 @@ class _QuizScreenState extends State<QuizScreen> {
             SizedBox(width: 24.0),
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 48.0),
-          child: Consumer<QuizModel>(
-            builder: (context, model, child) {
-              final kana = model.quizKana;
-              if (model.isFinished) {
-                return Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+        body: Consumer<QuizModel>(
+          builder: (context, model, child) {
+            // Show quiz result.
+            if (model.isFinished) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 48.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: 64.0),
+                    Text(
+                      "${model.correctKanas.length}/${model.totalKana}",
+                      style: Theme.of(context).textTheme.displayLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16.0),
+                    if (model.incorrectKanas.isEmpty)
                       Text(
-                        "${model.correctKanas.length}/${model.totalKana}",
-                        style: Theme.of(context).textTheme.displayLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 16.0),
-                      Text(
-                        "Keep it up!",
+                        "Good job!",
                         style: Theme.of(context).textTheme.bodyLarge,
                         textAlign: TextAlign.center,
                       ),
+                    SizedBox(height: 32.0),
+                    if (model.incorrectKanas.isNotEmpty) ...[
+                      Text(
+                        "You're getting there! Try reviewing these characters a bit more.",
+                        textAlign: TextAlign.center,
+                      ),
                       SizedBox(height: 32.0),
-                      FilledButton(
-                        onPressed: () {
-                          model.initQuiz();
+                      GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 8.0,
+                          crossAxisSpacing: 8.0,
+                        ),
+                        itemBuilder: (context, index) {
+                          final kana = model.incorrectKanas[index];
+                          return KanaBox(
+                            kana: kana,
+                            romaji: model.allKanas[kana] ?? "",
+                          );
                         },
-                        child: Text("Restart Quiz"),
+                        itemCount: model.incorrectKanas.length,
                       ),
                       SizedBox(height: 64.0),
                     ],
-                  ),
-                );
-              }
-              if (kana == null) {
-                return SizedBox();
-              }
-              return Column(
+                    FilledButton.tonal(
+                      onPressed: () {
+                        widget.onDeckOpen();
+                      },
+                      child: Text("Update Deck"),
+                    ),
+                    SizedBox(height: 8.0),
+                    FilledButton(
+                      onPressed: () {
+                        model.initQuiz();
+                      },
+                      child: Text("Restart Quiz"),
+                    ),
+                    SizedBox(height: 32.0),
+                  ],
+                ),
+              );
+            }
+
+            final kana = model.quizKana;
+            if (kana == null) {
+              return SizedBox();
+            }
+
+            // Show current kana card.
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 48.0),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: 64.0),
@@ -155,9 +196,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   SizedBox(height: 32.0),
                   Spacer(),
                 ],
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
