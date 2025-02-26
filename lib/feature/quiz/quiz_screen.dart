@@ -60,10 +60,7 @@ class _QuizScreenState extends State<QuizScreen> {
               builder: (context, model, child) {
                 return Text(
                   "${model.remainingKana} remaining",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontFamily: "Noto Sans JP",
-                    fontVariations: [FontVariation.weight(500)],
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 );
               },
             ),
@@ -83,20 +80,13 @@ class _QuizScreenState extends State<QuizScreen> {
                     children: [
                       Text(
                         "${model.correctKanas.length}/${model.totalKana}",
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontFamily: "Noto Sans JP",
-                          fontVariations: [FontVariation.weight(500)],
-                        ),
+                        style: Theme.of(context).textTheme.displayLarge,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 16.0),
                       Text(
                         "Keep it up!",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontFamily: "Noto Sans JP",
-                          fontVariations: [FontVariation.weight(500)],
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 32.0),
@@ -126,11 +116,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       alignment: Alignment.center,
                       child: Text(
                         kana,
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontFamily: "Noto Sans JP",
-                          fontVariations: [FontVariation.weight(500)],
-                        ),
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                     ),
                   ),
@@ -152,8 +138,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       hintText: "What is this character?",
                       hintStyle:
                           Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                fontFamily: "Noto Sans JP",
-                                fontVariations: [FontVariation.weight(500)],
                                 color: Colors.grey,
                               ),
                     ),
@@ -163,10 +147,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ],
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontFamily: "Noto Sans JP",
-                      fontVariations: [FontVariation.weight(500)],
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                     onSubmitted: (value) {
                       model.answer(value);
                     },

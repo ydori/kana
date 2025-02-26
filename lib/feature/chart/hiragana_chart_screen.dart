@@ -12,10 +12,7 @@ class HiraganaChartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Hiragana",
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontFamily: "Noto Sans JP",
-            fontVariations: [FontVariation.weight(500)],
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: LayoutBuilder(

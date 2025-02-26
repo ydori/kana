@@ -13,10 +13,7 @@ class DeckScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Deck",
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontFamily: "Noto Sans JP",
-            fontVariations: [FontVariation.weight(500)],
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: Consumer<QuizModel>(
@@ -42,17 +39,12 @@ class DeckScreen extends StatelessWidget {
                   children: [
                     Text(
                       "${kanaMap.entries.first.key} / ${kanaMap.entries.first.value}",
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontFamily: "Noto Sans JP",
-                        fontVariations: [FontVariation.weight(500)],
-                      ),
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     Spacer(),
                     Text(
                       "${kanaMap.length} characters",
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Colors.grey[700],
-                          ),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
                 ),

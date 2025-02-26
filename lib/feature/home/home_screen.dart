@@ -61,23 +61,14 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Deck",
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontFamily: "Noto Sans JP",
-                          fontVariations: [FontVariation.weight(500)],
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Spacer(),
                       Consumer<QuizModel>(
                         builder: (context, model, child) {
                           return Text(
                             "${model.totalKana} characters",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
-                                ?.copyWith(
-                                  color: Colors.grey[700],
-                                ),
+                            style: Theme.of(context).textTheme.labelSmall,
                           );
                         },
                       ),

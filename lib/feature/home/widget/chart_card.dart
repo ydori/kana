@@ -30,17 +30,12 @@ class ChartCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontFamily: "Noto Sans JP",
-                    fontVariations: [FontVariation.weight(500)],
-                  ),
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 SizedBox(height: 8.0),
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontFamily: "Noto Sans JP",
-                        fontVariations: [FontVariation.weight(500)],
                         color: Colors.grey[700],
                       ),
                 ),

@@ -20,10 +20,7 @@ class KanaBox extends StatelessWidget {
         children: [
           Text(
             kana,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontFamily: "Noto Sans JP",
-              fontVariations: [FontVariation.weight(500)],
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 4.0),
           Text(
