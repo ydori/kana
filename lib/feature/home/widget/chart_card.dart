@@ -41,7 +41,7 @@ class ChartCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontFamily: "Noto Sans JP",
                         fontVariations: [FontVariation.weight(500)],
-                        color: Colors.grey,
+                        color: Colors.grey[700],
                       ),
                 ),
               ],

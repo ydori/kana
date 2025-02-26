@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
+import "../quiz/model/quiz_model.dart";
 import "widget/chart_card.dart";
 
 class HomeScreen extends StatelessWidget {
@@ -7,12 +9,14 @@ class HomeScreen extends StatelessWidget {
     super.key,
     required this.onHiraganaChartOpen,
     required this.onKatakanaChartOpen,
-    required this.onPracticeOpen,
+    required this.onDeckOpen,
+    required this.onQuizOpen,
   });
 
   final VoidCallback onHiraganaChartOpen;
   final VoidCallback onKatakanaChartOpen;
-  final VoidCallback onPracticeOpen;
+  final VoidCallback onDeckOpen;
+  final VoidCallback onQuizOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +50,50 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 48.0),
             Text("Let's review our study!"),
-            SizedBox(height: 20.0),
-            FilledButton(
-              onPressed: onPracticeOpen,
-              child: Text("Practice"),
+            SizedBox(height: 16.0),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: onDeckOpen,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Deck",
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontFamily: "Noto Sans JP",
+                          fontVariations: [FontVariation.weight(500)],
+                        ),
+                      ),
+                      Spacer(),
+                      Consumer<QuizModel>(
+                        builder: (context, model, child) {
+                          return Text(
+                            "${model.totalKana} characters",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
+                                  color: Colors.grey[700],
+                                ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            Consumer<QuizModel>(
+              builder: (context, model, child) {
+                return FilledButton(
+                  onPressed: (model.kanaMaps.isEmpty) ? null : onQuizOpen,
+                  child: Text("Start Quiz"),
+                );
+              },
             ),
           ],
         ),
