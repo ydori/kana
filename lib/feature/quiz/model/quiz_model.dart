@@ -12,6 +12,7 @@ class QuizModel extends ChangeNotifier {
     return previousValue;
   });
   final Set<KanaMap> _kanaMaps = {};
+  final Stopwatch _stopwatch = Stopwatch();
   List<String> _quizKanas = [];
   List<String> _correctKanas = [];
   List<String> _incorrectKanas = [];
@@ -30,6 +31,7 @@ class QuizModel extends ChangeNotifier {
   int get remainingKana => _quizKanas.length;
   String? get quizKana => _quizKanas.firstOrNull;
   bool get isFinished => _isFinished;
+  Duration get quizTime => _stopwatch.elapsed;
 
   void addColumnToDeck(KanaMap kana) {
     _kanaMaps.add(kana);
@@ -55,6 +57,9 @@ class QuizModel extends ChangeNotifier {
     _correctKanas = [];
     _incorrectKanas = [];
     _isFinished = false;
+    _stopwatch
+      ..reset()
+      ..start();
     notifyListeners();
   }
 
@@ -70,6 +75,7 @@ class QuizModel extends ChangeNotifier {
     // Check finished state.
     if (_quizKanas.isEmpty) {
       _isFinished = true;
+      _stopwatch.stop();
     }
     notifyListeners();
   }

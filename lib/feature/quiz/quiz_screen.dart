@@ -62,7 +62,9 @@ class _QuizScreenState extends State<QuizScreen> {
             Consumer<QuizModel>(
               builder: (context, model, child) {
                 return Text(
-                  "${model.remainingKana} remaining",
+                  (model.isFinished)
+                      ? "Time: ${_formatQuizTime(model.quizTime)}"
+                      : "${model.remainingKana} remaining",
                   style: Theme.of(context).textTheme.bodyMedium,
                 );
               },
@@ -203,4 +205,11 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
   }
+}
+
+String _formatQuizTime(Duration duration) {
+  // ignore: prefer_interpolation_to_compose_strings
+  return duration.inMinutes.toString().padLeft(2, "0") +
+      ":" +
+      (duration.inSeconds % 60).toString().padLeft(2, "0");
 }
