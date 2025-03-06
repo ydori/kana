@@ -30,6 +30,21 @@ class Hiragana {
     {"ぱ": "PA", "ぴ": "PI", "ぷ": "PU", "ぺ": "PE", "ぽ": "PO"},
   ];
 
+  // Youon (small ゃ, ゅ, ょ combinations).
+  static const List<KanaMap> youons = [
+    {"きゃ": "KYA", "きゅ": "KYU", "きょ": "KYO"},
+    {"しゃ": "SHA", "しゅ": "SHU", "しょ": "SHO"},
+    {"ちゃ": "CHA", "ちゅ": "CHU", "ちょ": "CHO"},
+    {"にゃ": "NYA", "にゅ": "NYU", "にょ": "NYO"},
+    {"ひゃ": "HYA", "ひゅ": "HYU", "ひょ": "HYO"},
+    {"みゃ": "MYA", "みゅ": "MYU", "みょ": "MYO"},
+    {"りゃ": "RYA", "りゅ": "RYU", "りょ": "RYO"},
+    {"ぎゃ": "GYA", "ぎゅ": "GYU", "ぎょ": "GYO"},
+    {"じゃ": "JA", "じゅ": "JU", "じょ": "JO"},
+    {"びゃ": "BYA", "びゅ": "BYU", "びょ": "BYO"},
+    {"ぴゃ": "PYA", "ぴゅ": "PYU", "ぴょ": "PYO"},
+  ];
+
   // All characters.
-  static List<KanaMap> all = bases + dakutens + handakutens;
+  static List<KanaMap> all = bases + dakutens + handakutens + youons;
 }
