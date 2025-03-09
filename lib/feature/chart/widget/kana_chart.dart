@@ -31,7 +31,11 @@ class KanaChart extends StatelessWidget {
           itemBuilder: (context, index) {
             if (index == 0) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: padding.horizontal),
+                padding: EdgeInsets.only(
+                  left: padding.horizontal / 2,
+                  right: padding.horizontal / 2,
+                  bottom: 8.0,
+                ),
                 child: Text(
                   title,
                   style: Theme.of(context).textTheme.titleMedium,

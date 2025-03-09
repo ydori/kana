@@ -25,7 +25,7 @@ class KanaBox extends StatelessWidget {
           const SizedBox(height: 4.0),
           Text(
             romaji,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Colors.grey,
                 ),
           ),
