@@ -50,7 +50,7 @@ class _DeckScreenState extends State<DeckScreen>
                 onTap: (value) {
                   _pageController.animateToPage(
                     value,
-                    duration: const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 100),
                     curve: Curves.linear,
                   );
                 },
@@ -98,7 +98,13 @@ class DeckItemList extends StatelessWidget {
       itemBuilder: (context, index) {
         final kanaMap = kanaMaps[index];
         final isInDeck = model.kanaMaps.contains(kanaMap);
-        return FilledButton(
+        return FilledButton.icon(
+          icon: Icon(
+            (isInDeck) ? Icons.check_circle : Icons.circle,
+            color: (isInDeck)
+                ? Theme.of(context).colorScheme.onPrimaryContainer
+                : Theme.of(context).colorScheme.surfaceContainer,
+          ),
           style: FilledButton.styleFrom(
             backgroundColor: (isInDeck)
                 ? Theme.of(context).colorScheme.primaryContainer
@@ -109,7 +115,7 @@ class DeckItemList extends StatelessWidget {
                 ? model.removeColumnFromDeck(kanaMap)
                 : model.addColumnToDeck(kanaMap);
           },
-          child: Row(
+          label: Row(
             children: [
               Text(
                 "${kanaMap.entries.first.key} / ${kanaMap.entries.first.value}",
