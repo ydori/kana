@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
 import "feature/chart/hiragana_chart_screen.dart";
+import "feature/chart/katakana_chart_screen.dart";
 import "feature/home/home_screen.dart";
 import "feature/quiz/deck_screen.dart";
 import "feature/quiz/model/quiz_model.dart";
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
                   Navigator.of(context).pushNamed("/chart/hiragana");
                 },
                 onKatakanaChartOpen: () {
-                  // TODO: Navigate to Katakana Chart
+                  Navigator.of(context).pushNamed("/chart/katakana");
                 },
                 onDeckOpen: () {
                   Navigator.of(context).pushNamed("/deck");
@@ -99,6 +100,7 @@ class MyApp extends StatelessWidget {
                 },
               ),
           "/chart/hiragana": (context) => HiraganaChartScreen(),
+          "/chart/katakana": (context) => KatakanaChartScreen(),
           "/deck": (context) => DeckScreen(),
           "/quiz": (context) => QuizScreen(
                 onDeckOpen: () {

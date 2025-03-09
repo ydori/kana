@@ -3,6 +3,7 @@ import "dart:collection";
 import "package:flutter/material.dart";
 
 import "../../../core/model/hiragana.dart";
+import "../../../core/model/kana_map.dart";
 
 class QuizModel extends ChangeNotifier {
   QuizModel();

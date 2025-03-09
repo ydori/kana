@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../core/model/hiragana.dart";
+import "../../../core/model/kana_map.dart";
 import "../../../core/widget/kana_box.dart";
 
 class KanaChart extends StatelessWidget {

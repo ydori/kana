@@ -1,4 +1,4 @@
-typedef KanaMap = Map<String, String>;
+import "kana_map.dart";
 
 class Hiragana {
   const Hiragana._();
