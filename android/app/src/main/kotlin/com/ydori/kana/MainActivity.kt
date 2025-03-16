@@ -1,4 +1,4 @@
-package com.ydori.kana
+package com.arraflydori.kana
 
 import io.flutter.embedding.android.FlutterActivity
 
